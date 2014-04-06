@@ -19,5 +19,8 @@ class Domi
     puts "merging"
   end
 
+  def adding_method_from_tahas3rdbranch
+  end
+
 
 end
