@@ -1,5 +1,6 @@
 class Domi
 
+  attr_accessor :whee
 
   def new_method
     puts "this is my method"
@@ -14,6 +15,8 @@ class Domi
   def this_is_a_method
     puts "This merging is making me dizzy..."
   end
+
+
 
 
 end
