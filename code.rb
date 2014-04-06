@@ -15,5 +15,9 @@ class Domi
     puts "This merging is making me dizzy..."
   end
 
+  def adding_method_from_tahas2ndbranch
+    puts "merging"
+  end
+
 
 end
