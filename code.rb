@@ -1,5 +1,6 @@
 class Domi
 
+  attr_accessor :whee
 
   def new_method
     puts "this is my method"
@@ -18,6 +19,8 @@ class Domi
   def adding_method_from_tahas2ndbranch
     puts "merging"
   end
+
+
 
 
 end
