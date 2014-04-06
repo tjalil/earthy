@@ -1,1 +1,6 @@
-This is our nasa space hackathon by Taha Jalil
+== README
+
+Taha's pushing too
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.
