@@ -12,4 +12,8 @@ class Domi
     return thing + " is terrific!!"
   end 
 
+  def this_is_a_method
+    puts "This merging is making me dizzy..."
+  end
+
 end
