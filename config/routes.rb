@@ -1,4 +1,11 @@
 Earthy::Application.routes.draw do
+
+  # EDITED BY JOSH: I set up a quick test route to properly integrate the view I made. Feel free to edit/delete this.
+  root 'temps#index'
+  # END EDIT
+
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
