@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Earthy::Application.config.secret_key_base = 'a8b5f2faeca51c28a4f9c90234221888726c309de06fc89c5778e44f9e3bb974b8a5033fae909c8f3f4804cdb01ce6e4fc31e8115f89f50f6537f4ebff78953b'
+Earthy::Application.config.secret_key_base = '2fd9b67a0052602878f0d69000db0c5ef5812720233d7c30543927a4ddd5c893d5374c836728b89268c8a1731c7f127501bf88f39173ecbfa8abe02899589e26'
