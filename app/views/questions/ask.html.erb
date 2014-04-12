@@ -148,12 +148,11 @@ $(document).ready(function() {
 
 <%= form_tag("/questions", :method => :post) do %>
   <div id="question_div">
-    <div id="a1">
-        
+
+    <div id="a1">     
         <label>
           <span class="a_title"><%= @choice1[0] %></span><br>
           <span class="a_subtitle"><%= @choice1[1] %></span>
-
           <input type="radio" name="answer" id="radio_answer_1" value="1">
         </label>
       </div>

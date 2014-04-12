@@ -16,6 +16,7 @@ Earthy::Application.routes.draw do
 
   post 'questions' => 'questions#validate'
 
+  root to: "questions#index"
 
 
 
