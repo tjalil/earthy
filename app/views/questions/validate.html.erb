@@ -92,7 +92,7 @@ $(document).ready(function() {
 <canvas id="bgCanvas"></canvas>
 
 <!-- MAIN IMAGE -->
-<div id="start_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
+<div id="start_img" style="background-image:url(/assets/<%= @question.local_url.downcase %>.jpg);"></div>
 
 
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
@@ -106,15 +106,18 @@ $(document).ready(function() {
   <!-- USE THIS WITH THE RUBY VARIABLES -->
 
 
-  <div id="header_correct" <%= "style='display:none'" if @answer == 'false' %>>
+  <div id="header_correct" <%= "style=display:none" if @answer == false %>>
     <h2 style="color: #C0F074">You're right! The answer is <%= @question.location_title %>!</h2>
   </div>
-  <div id="header_incorrect" <%= "style='display:none'" if @answer %>>
+  <div id="header_incorrect" <%= "style=display:none" if @answer == true %>>
     <h2 style="color: #FF4545">Sorry, the answer was <%= @question.location_title %></h2>
   </div>
 
   <p>Lake Chikita is the 3rd largest lake in Antarctica. It is frozen for 14 months out of the year. Magical trolls inhabit the summertime 
   
+  <p><%= form_tag(questions_ask_path, method: :post) do %>
+      <%= submit_tag "Next Question" %>
+    <% end %>
 </div>
 
   
