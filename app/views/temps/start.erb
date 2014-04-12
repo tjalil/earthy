@@ -1,0 +1,166 @@
+<script>
+$(document).ready(function() {
+  var bgCanvas = document.getElementById('bgCanvas');
+  function render() { 
+    bgCanvas.patternizer({
+      stripes : [
+          {
+          color: '#000000',
+          rotation: 76,
+          opacity: 22,
+          mode: 'plaid',
+          width: 104,
+          gap: 104,
+          offset: 0
+        },
+        {
+          color: '#232323',
+          rotation: 76,
+          opacity: 59,
+          mode: 'plaid',
+          width: 15,
+          gap: 2,
+          offset: 0
+        },
+        {
+          color: '#262626',
+          rotation: 76,
+          opacity: 43,
+          mode: 'plaid',
+          width: 2,
+          gap: 4,
+          offset: 0
+        },
+        {
+          color: '#897f78',
+          rotation: 70,
+          opacity: 87,
+          mode: 'normal',
+          width: 1,
+          gap: 2,
+          offset: 0
+        },
+        {
+          color: '#6d6d7f',
+          rotation: 300,
+          opacity: 100,
+          mode: 'normal',
+          width: 2,
+          gap: 2,
+          offset: 0
+        }
+      ],
+      bg : '#999999'
+    
+    });
+  }
+  
+  // resize the canvas to the window size
+  function init() {
+   
+    // number of pixels of extra canvas drawn
+    var buffer = 100;
+   
+    // if extra canvas size is less than the buffer amount
+    if (bgCanvas.width - window.innerWidth < buffer ||
+      bgCanvas.height - window.innerHeight < buffer) {
+   
+      // resize the canvas to window plus double the buffer
+      bgCanvas.width = window.innerWidth + (buffer * 2);
+      bgCanvas.height = window.innerHeight + (buffer * 2);
+   
+      render();
+    }   
+   
+  }
+   
+   
+  init();
+
+
+  // Opening effects
+  $("#question_div").delay(2000).animate({
+    bottom : 0  
+  }, 800);
+  $("#question_label").delay(1500).animate({
+    bottom : 0  
+  }, 800).delay(3000).fadeOut(2000);
+    $("#start_label").delay(1500).animate({
+    bottom : 0  
+  }, 800).delay(3000).fadeOut(2000);
+
+
+  // Manual info effect
+  $("#manual_trigger").mouseenter(function() {
+    $("#manual_howto").stop().animate({
+      left: '0px'
+    }, 300);
+  }).mouseout(function() {
+    $("#manual_howto").stop().animate({
+      left: '-260px'
+    }, 300);
+  })
+
+
+  // Handle disabling  and styling the submit button
+  $("input:radio").click(function() { // If we click a radio button's label
+    if (!$("input[name='html_elements']:checked").val()) {
+      $("#question_div label").attr("style","")
+      $(this).parent().attr("style","background: #8FBD06")
+      $(this).siblings(".a_title").attr("style","color: #FFF")
+      $("#submit_button").removeAttr("disabled")
+      $("#submit_button").attr("class","submit_enabled")    
+    } else {
+
+    }
+  });
+  
+
+
+
+
+  
+});
+
+</script>
+<!-- Background pattern -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- MAIN IMAGE -->
+<div id="start_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
+
+<div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
+
+<div id="manual_howto">
+  <h3>Users Manual</h3>
+  <p>Earthy is a game where you have to find a place according to the satelite picture.</p>
+  <ol>
+    <li>Check the satelite picture in the background</li>
+    <li>Select 1 out of the 4 answers</li>
+    <li>Klick on Lock In to see whether you are right</li>
+  </ol>
+</div>
+
+
+<div id="manual_trigger">i</div>
+
+<div id="start_title">
+    <h2>Welcome to the earthy</h2>
+</div>
+
+<div id="start_info">
+    <p>discover the world by satellite pictures</p>
+</div> 
+
+<div id="start">
+    <%= form_tag("/", method: "get", class:"name") do %>
+    <%= text_field_tag(:name, nil, placeholder: " your name", class: "name") %>
+    <%= submit_tag("Start", :class => "go") %>
+    <% end %>
+</div>
+
+  
+<!-- Side gradients -->
+<div id="gradient-left"></div>
+<div id="gradient-right"></div>
+<div id="gradient-bottom"></div>
