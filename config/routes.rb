@@ -1,6 +1,6 @@
 Earthy::Application.routes.draw do
   
-  get "question/index"
+  get "questions/index"
 
  #  EDITED BY ADRIANA: these are templates for how routes can be set up
   #  Assumptions: the id is the question id, the round/points are hidden params
