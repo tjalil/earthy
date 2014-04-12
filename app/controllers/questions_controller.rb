@@ -12,11 +12,11 @@ class QuestionsController < ApplicationController
 
     counter_passed_array = counter_passed.split("|")
 
+    @name = params[:name]
 
+    if counter_passed_array.length > 1
 
-    if counter_passed_array.length > 6
-
-      redirect_to end_path
+      render :summary
 
     else
 
@@ -34,12 +34,11 @@ class QuestionsController < ApplicationController
 
     end
 
-    @name = params[:name]
-
   end
 
   def validate
 
+    @name = params[:player_name]
     choice = params[:answer]
 
     question_id = params[:question_id]
@@ -53,6 +52,10 @@ class QuestionsController < ApplicationController
     @question_number = (@counter_to_pass.split("|")).length - 1
 
 
+  end
+
+  def summary
+    @name = params[:player_name]
   end
 
 end

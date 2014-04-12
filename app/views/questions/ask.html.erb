@@ -86,12 +86,12 @@ $(document).ready(function() {
   });
 
   // Opening effects
-  $("#question_div").delay(2000).animate({
+  $("#question_div").delay(1000).animate({
     bottom : 0  
   }, 800);
-  $("#question_label").delay(1500).animate({
+  $("#question_label").delay(500).animate({
     bottom : 0  
-  }, 800).delay(3000).fadeOut(2000);
+  }, 800).delay(2000).fadeOut(2000);
 
   // Manual info effect
   $("#manual_trigger").mouseenter(function() {
@@ -132,7 +132,7 @@ $(document).ready(function() {
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
 
 <div id="status_bar">
-  <strong>Playing as <span class="player_name"><%= @name %></span>.</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question <%=@question_number%> of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
+  <strong>Playing as <span class="player_name"><%= @name %></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question <%=@question_number%> of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
 </div>
 
 <div id="manual_howto">
@@ -179,6 +179,7 @@ $(document).ready(function() {
         </label>
       </div>
       <div id="submit_div">
+        <input type="hidden" name="player_name" value="<%= @name %>">
         <input type="hidden" name="question_id" value="<%= @question.id %>">
         <input type="submit" id="submit_button" value="Lock In" class="submit_disabled" disabled>
       </div>
