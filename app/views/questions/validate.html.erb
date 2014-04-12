@@ -1,0 +1,159 @@
+<script>
+$(document).ready(function() {
+  var bgCanvas = document.getElementById('bgCanvas');
+  function render() { 
+    bgCanvas.patternizer({
+      stripes : [
+          {
+          color: '#000000',
+          rotation: 76,
+          opacity: 22,
+          mode: 'plaid',
+          width: 104,
+          gap: 104,
+          offset: 0
+        },
+        {
+          color: '#232323',
+          rotation: 76,
+          opacity: 59,
+          mode: 'plaid',
+          width: 15,
+          gap: 2,
+          offset: 0
+        },
+        {
+          color: '#262626',
+          rotation: 76,
+          opacity: 43,
+          mode: 'plaid',
+          width: 2,
+          gap: 4,
+          offset: 0
+        },
+        {
+          color: '#897f78',
+          rotation: 70,
+          opacity: 87,
+          mode: 'normal',
+          width: 1,
+          gap: 2,
+          offset: 0
+        },
+        {
+          color: '#6d6d7f',
+          rotation: 300,
+          opacity: 100,
+          mode: 'normal',
+          width: 2,
+          gap: 2,
+          offset: 0
+        }
+      ],
+      bg : '#999999'
+    
+    });
+  }
+  
+  // resize the canvas to the window size
+  function init() {
+   
+    // number of pixels of extra canvas drawn
+    var buffer = 100;
+   
+    // if extra canvas size is less than the buffer amount
+    if (bgCanvas.width - window.innerWidth < buffer ||
+      bgCanvas.height - window.innerHeight < buffer) {
+   
+      // resize the canvas to window plus double the buffer
+      bgCanvas.width = window.innerWidth + (buffer * 2);
+      bgCanvas.height = window.innerHeight + (buffer * 2);
+   
+      render();
+    }   
+   
+  }
+   
+   
+  init();
+
+
+
+  
+
+
+
+
+  
+});
+
+</script>
+<!-- Background pattern -->
+<canvas id="bgCanvas"></canvas>
+
+<!-- MAIN IMAGE -->
+<div id="satellite_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
+
+
+<div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
+
+<div id="status_bar">
+  <strong>Playing as <span class="player_name">Josh</span>.</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question 1 of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
+</div>
+
+<div id="manual_howto">
+  <h3>Users Manual</h3>
+  <p>Y.</p>
+  <ol>
+    <li>Check the satelite picture in the background</li>
+    <li>Select 1 out of the 4 answers</li>
+    <li>Klick on Lock In to see whether you are right</li>
+  </ol>
+</div>
+
+
+<div id="manual_trigger">i</div>
+
+
+<div id="question_label">
+    <h2>Identify this region.</h2>
+</div> 
+
+<div id="question_div">
+  <div id="a1">
+      <label>
+        <span class="a_title">Galápagos Islands</span><br>
+        <span class="a_subtitle">Continental Ecuador</span>
+        <input type="radio" name="answer" id="radio_answer_1" value="1">
+      </label>
+    </div>
+    <div id="a2">
+      <label>
+        <span class="a_title">Chilika Lake</span><br>
+        <span class="a_subtitle">Odisha, India</span>
+        <input type="radio" name="answer" id="radio_answer_2" value="2">
+      </label>
+    </div>
+    <div id="a3">
+      <label id="a3_label">
+        <span class="a_title">Bora Bora</span><br>
+        <span class="a_subtitle">Tahiti, French Polynesia</span>
+        <input type="radio" name="answer" id="radio_answer_3" value="3">
+      </label>
+    </div>
+    <div id="a4">
+      <label>
+        <span class="a_title">South Pole</span><br>
+        <span class="a_subtitle">Antarctica</span>
+        <input type="radio" name="answer" id="radio_answer_4" value="4">
+      </label>
+    </div>
+    <div id="submit_div">
+      <input type="submit" id="submit_button" value="Lock In" class="submit_disabled" disabled>
+    </div>
+</div>
+  
+<!-- Side gradients -->
+<div id="gradient-left"></div>
+<div id="gradient-right"></div>
+<div id="gradient-bottom"></div>
