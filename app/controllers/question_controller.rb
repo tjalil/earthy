@@ -5,6 +5,9 @@ class QuestionController < ApplicationController
   def ask
   end
 
+  def verify
+  end
+
   def answer
   end
 end
