@@ -1,7 +1,7 @@
 class Question < ActiveRecord::Base
 
 
- def random_question
+ def self.random_question
 
         if  @questions_administered.length < 6          
 
