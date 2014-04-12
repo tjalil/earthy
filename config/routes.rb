@@ -9,7 +9,8 @@ Earthy::Application.routes.draw do
   # EDITED BY JOSH: I set up a quick test route to properly integrate the view I made. Feel free to edit/delete this.
   get 'questions' => 'questions#index'
   get 'questions/ask' => 'questions#ask'
-  post 'questions/answer' => 'questions#validate'
+  post 'questions' => 'questions#validate'
+  get 'questions/answer' => 'questions#display'
   root 'temps#index'  # END EDIT
 
 
