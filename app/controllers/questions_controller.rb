@@ -1,16 +1,20 @@
 class QuestionsController < ApplicationController
   def index
+
   end
 
   def ask
-    @question = Question.new
+    
+    @question = Question.random_question
+
   end
 
   def validate
-  	#@answer = Question.answer_question(params[:id],params[:choice])
-  	#if @answer == true
-  		redirect_to questions_answer_url
-  	#else
-  		#redirect_to #what?
+
+    choice = params[:answer]
+    question_id = params[:question_id]
+
+    @answer = Question.answer_question(question_id,choice)
+
   end
 end
