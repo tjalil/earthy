@@ -44,6 +44,12 @@ body {
   padding: 6px 20px;
 }
 
+#start {
+  z-index: 4;
+  position: relative;
+  right: ;
+}
+
 #manual_trigger {
   position: absolute;
   z-index: 5;
@@ -149,6 +155,19 @@ input[type=radio] {
 	bottom: -200px;
 	width: 100%;
 	text-align: center;
+  background:rgba(0, 0, 0, 0.6);
+  color: rgba(255,255,255,1);
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.6); 
+}
+
+#start_label {
+  z-index: 3;
+  position: absolute;
+  left: 0%;
+  right: 0;
+  bottom: -270px;
+  width: 100%;
+  text-align: center;
   background:rgba(0, 0, 0, 0.6);
   color: rgba(255,255,255,1);
   text-shadow: 2px 2px 4px rgba(0,0,0,0.6); 
