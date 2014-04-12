@@ -3,6 +3,9 @@ require "yaml"
 
 class QuestionsController < ApplicationController
 
+  # How many questions per round (default 6, lowered to 1 for testing)
+  GAME_LENGTH = 1
+
 
   def index
     cookies[:score] = YAML::dump []
@@ -16,7 +19,7 @@ class QuestionsController < ApplicationController
 
     @name = params[:name]
 
-    if counter_passed_array.length > 1
+    if counter_passed_array.length > GAME_LENGTH
 
       render :summary
 
