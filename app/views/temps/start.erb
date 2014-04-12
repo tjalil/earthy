@@ -79,7 +79,6 @@ $(document).ready(function() {
 
 
   // Opening effects
-  $("#satellite_img").delay(1000).fadeIn(1000);
   $("#question_div").delay(2000).animate({
     bottom : 0  
   }, 800);
@@ -128,13 +127,9 @@ $(document).ready(function() {
 <canvas id="bgCanvas"></canvas>
 
 <!-- MAIN IMAGE -->
-<div id="satellite_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
+<div id="start_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
 
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
-
-<div id="status_bar">
-  <strong>Playing as <span class="player_name">Josh</span>.</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question 1 of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
-</div>
 
 <div id="manual_howto">
   <h3>Users Manual</h3>
@@ -149,14 +144,17 @@ $(document).ready(function() {
 
 <div id="manual_trigger">i</div>
 
-<div id="start_label">
+<div id="start_title">
     <h2>Welcome to the earthy</h2>
+</div>
+
+<div id="start_info">
     <p>discover the world by satellite pictures</p>
 </div> 
 
 <div id="start">
     <%= form_tag("/", method: "get", class:"name") do %>
-    <%= text_field_tag(:name, nil, placeholder: "your name", class: "name") %>
+    <%= text_field_tag(:name, nil, placeholder: " your name", class: "name") %>
     <%= submit_tag("Start", :class => "go") %>
     <% end %>
 </div>

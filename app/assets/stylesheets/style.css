@@ -71,6 +71,13 @@ h2 {
 	margin: 5px 0px 0px 0px;
 }
 
+.go {
+	font-family: 'Maven Pro', sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: rgba(80,80,80,1);
+}
+
 .a_title {
 	font-size: 19px;
 	font-weight: 700;
