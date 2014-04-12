@@ -1,5 +1,6 @@
 <h1>this is the question? </h1>
 <%= form_tag "/question/ask" do %>
-<%= radio_button_tag(:choice, "child") %>
 <%= label_tag(:choice1, "Toronto") %>
+<%= radio_button_tag(:choice, "child") %>
+<%= submit_tag "Submit" %>
 <% end %>
