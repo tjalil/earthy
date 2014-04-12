@@ -1,5 +1,6 @@
 Earthy::Application.routes.draw do
 
+
  #  EDITED BY ADRIANA: these are templates for how routes can be set up
   #  Assumptions: the id is the question id, the round/points are hidden params
  #  get 'game/:id/ask' => "games#ask"
@@ -15,7 +16,7 @@ Earthy::Application.routes.draw do
 
   post 'questions' => 'questions#validate'
 
-  root 'temps#index'  # END EDIT
+  root 'questions'
 
 
 
