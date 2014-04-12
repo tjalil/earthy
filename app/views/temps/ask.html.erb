@@ -1,0 +1,7 @@
+<h1>this is the question? </h1>
+<%= form_tag "/question/ask" do %>
+<%= label_tag "Toronto" %>
+<%= radio_button_tag(:choice1, "Toronto, CA") %>
+<%= radio_button_tag(:choice2, "San Fran, CA") %>
+<%= submit_tag "Submit" %>
+<% end %>
