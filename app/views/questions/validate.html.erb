@@ -113,7 +113,7 @@ $(document).ready(function() {
     <h2 style="color: #FF4545">Sorry, the answer was <%= @question.location_title %></h2>
   </div>
 
-  <p>Lake Chikita is the 3rd largest lake in Antarctica. It is frozen for 14 months out of the year. Magical trolls inhabit the summertime 
+  <p><%= @question.answer_description %>
   
   <p><%= form_tag(questions_ask_path, method: :post) do %>
       <%= submit_tag "Next Question" %>
