@@ -145,10 +145,15 @@ h2 {
 
 
 #result_container input[type=submit] {
-	border: 0px;
-	border-radius: 10px;
+	position: absolute;
 	width: 250px;
 	height: 70px;
+	left: 50%;
+	margin-left: -125px;
+	bottom: 25px;	
+	border: 0px;
+	border-radius: 10px;
+
 	color: #FFF;
 	font-family: 'Maven Pro';
 	font-weight: 700;
@@ -163,5 +168,13 @@ h2 {
 }
 
 
-
+#result_container h2 {
+	font-size: 34px;
+	margin: 25px 0px;
+}
+#result_container p {
+	width: 35%;
+	margin: 0 auto 150px auto;
+	text-align: justify;
+}
 

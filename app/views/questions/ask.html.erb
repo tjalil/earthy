@@ -78,8 +78,14 @@ $(document).ready(function() {
   init();
 
 
+  // Image load fade-in
+  var imgobj = new Image();
+  imgobj.src = "/assets/<%= @question.local_url.downcase %>.jpg" ;
+  $(imgobj).load(function() {
+    $("#satellite_img").fadeIn(1000);
+  });
+
   // Opening effects
-  $("#satellite_img").delay(1000).fadeIn(1000);
   $("#question_div").delay(2000).animate({
     bottom : 0  
   }, 800);
