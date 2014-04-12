@@ -111,7 +111,7 @@ body {
 
 #name:focus {
   background-color: rgba(255,255,255,1);
-  transition: 2s;
+  transition: 1s;
 }
 
 
@@ -319,7 +319,7 @@ input[type=radio] {
   position: absolute;
   z-index: 5;
   width: 100%;
-  bottom: 0px;
+  bottom: -80%;
   background: rgba(0,0,0,0.75);
   color: #FFF;
   text-align: center;
