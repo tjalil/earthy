@@ -151,36 +151,42 @@ $(document).ready(function() {
     <h2>Identify this region.</h2>
 </div> 
 
+
+<!--  
+
+
+-->
 <div id="question_div">
   <div id="a1">
       <label>
-        <span class="a_title">Galápagos Islands</span><br>
-        <span class="a_subtitle">Continental Ecuador</span>
+        <span class="a_title"><%= @question.choice_1[0] %></span><br>
+        <span class="a_subtitle"><%= @question.choice_1[1] %></span>
         <input type="radio" name="answer" id="radio_answer_1" value="1">
       </label>
     </div>
     <div id="a2">
       <label>
-        <span class="a_title">Chilika Lake</span><br>
-        <span class="a_subtitle">Odisha, India</span>
+        <span class="a_title"><%= @question.choice_2[0] %></span><br>
+        <span class="a_subtitle"><%= @question.choice_2[1] %></span>
         <input type="radio" name="answer" id="radio_answer_2" value="2">
       </label>
     </div>
     <div id="a3">
       <label id="a3_label">
-        <span class="a_title">Bora Bora</span><br>
-        <span class="a_subtitle">Tahiti, French Polynesia</span>
+        <span class="a_title"><%= @question.choice_3[0] %></span><br>
+        <span class="a_subtitle"><%= @question.choice_3[1] %></span>
         <input type="radio" name="answer" id="radio_answer_3" value="3">
       </label>
     </div>
     <div id="a4">
       <label>
-        <span class="a_title">South Pole</span><br>
-        <span class="a_subtitle">Antarctica</span>
+        <span class="a_title"><%= @question.choice_4[0] %></span><br>
+        <span class="a_subtitle"><%= @question.choice_4[1] %></span>
         <input type="radio" name="answer" id="radio_answer_4" value="4">
       </label>
     </div>
     <div id="submit_div">
+
       <input type="submit" id="submit_button" value="Lock In" class="submit_disabled" disabled>
     </div>
 </div>
