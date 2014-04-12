@@ -21,3 +21,7 @@ module Earthy
     # config.i18n.default_locale = :de
   end
 end
+
+# ActiveRecord::SessionStore::Session.table_name = 'session_score_table'
+# ActiveRecord::SessionStore::Session.primary_key = 'session_id'
+# ActiveRecord::SessionStore::Session.data_column_name = 'score_data'

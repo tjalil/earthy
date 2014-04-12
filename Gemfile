@@ -1,7 +1,10 @@
 source 'https://rubygems.org'
 
+gem 'pry', :group => :development
+
+
 # Use to store sessions in a database and access using ActiveRecord
-gem 'activerecord-session_store'
+# gem 'activerecord-session_store'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
