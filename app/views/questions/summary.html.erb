@@ -92,28 +92,20 @@ $(document).ready(function() {
 <canvas id="bgCanvas"></canvas>
 
 <!-- MAIN IMAGE -->
-<div id="start_img" style="background-image:url(/assets/<%= @question.local_url.downcase %>.jpg);"></div>
+<div id="start_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
 
 
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
 
 <div id="status_bar">
-  <strong>Playing as <span class="player_name">Josh</span>.</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question 1 of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
+  <strong>Playing as <span class="player_name"><%= @name %></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question 1 of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
 </div>
 
 
-<div id="result_container">
-  <!-- USE THIS WITH THE RUBY VARIABLES -->
+<div id="summary_container">
 
+  <h2 class="summary_header" style="color: #FF4545">Holy cow, you did great!</h2>
 
-  <div id="header_correct" <%= "style=display:none" if @answer == false %>>
-    <h2 style="color: #C0F074">You're right! The answer is <%= @question.location_title %>!</h2>
-  </div>
-  <div id="header_incorrect" <%= "style=display:none" if @answer == true %>>
-    <h2 style="color: #FF4545">Sorry, the answer was <%= @question.location_title %></h2>
-  </div>
-
-  <p><%= @question.answer_description %>
   
   <p><%= form_tag(questions_ask_path, method: :post) do %>
       <%= submit_tag "Next Question" %>

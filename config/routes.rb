@@ -16,6 +16,8 @@ Earthy::Application.routes.draw do
 
   post 'questions' => 'questions#validate'
 
+  get 'questions/summary' => 'questions#summary', as: :summary
+
   root to: "questions#index"
 
 

@@ -2,6 +2,10 @@ body {
 	overflow: hidden;	
 }
 
+input[type=submit] {
+  outline: none;
+}
+
 #satellite_img {
 	display: none;
 	z-index: 1;
@@ -67,6 +71,7 @@ body {
   top: 40%;
   border: 5px solid #727272;
   border-radius: 25px;
+  box-shadow: 2px 2px 15px rgba(0,0,0,0.5);
 }
 
 #name {
@@ -78,6 +83,7 @@ body {
   outline: none;
   border-radius: 20px 0px 0px 20px;
   padding-left: 20px;
+  transition: 0.8s;
 }
 
 .go  {
@@ -111,7 +117,7 @@ body {
 
 #name:focus {
   background-color: rgba(255,255,255,1);
-  transition: 1s;
+  transition: 0.4s;
 }
 
 
@@ -328,3 +334,27 @@ input[type=radio] {
 .result_header {
   font-size: 28px;
 }
+
+#summary_container {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 80%;
+  bottom: -10%;
+  background: rgba(0,0,0,0.85);
+  color: #FFF;
+  text-align: center;
+}
+.summary_header {
+  font-size: 34px;
+}
+
+
+
+
+
+
+
+
+
+

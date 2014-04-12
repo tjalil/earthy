@@ -19,6 +19,7 @@ h2 {
 	border-radius: 0px 0px 0px 8px;
 	transition: 0.4s;
 	cursor: default;
+	text-shadow: 1px 1px 3px #000;
 }
 	.restart_game {
 		font-weight: 700;
