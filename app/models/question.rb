@@ -41,7 +41,7 @@ class Question < ActiveRecord::Base
 
         question = Question.find(q_id)
 
-        choice == question.correct_choice.to_i
+        choice.to_s == question.correct_choice.to_s
 
 
     end 

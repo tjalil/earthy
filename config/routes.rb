@@ -11,12 +11,11 @@ Earthy::Application.routes.draw do
 
   get 'questions' => 'questions#index'
   
-  post 'questions/:id/ask' => 'questions#ask'
+  post 'questions/ask' => 'questions#ask'
   
 
   post 'questions' => 'questions#validate'
 
-  root 'questions'
 
 
 

@@ -298,3 +298,16 @@ input[type=radio] {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 ); 
 }
 
+
+
+
+#result_container {
+  position: absolute;
+  z-index: 5;
+  height: 60%;
+  width: 100%;
+  bottom: 0px;
+  background: rgba(0,0,0,0.75);
+  color: #FFF;
+  text-align: center;
+}

@@ -18,6 +18,8 @@ class QuestionsController < ApplicationController
     choice = params[:answer]
     question_id = params[:question_id]
 
+    @question = Question.find(question_id)
+
     @answer = Question.answer_question(question_id,choice)
 
   end
