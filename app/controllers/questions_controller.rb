@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
   end
 
   def ask
-    
+
 
     counter_passed = params[:counter]
 
@@ -21,11 +21,18 @@ class QuestionsController < ApplicationController
 
       @question = Question.random_question(counter_passed_array)
 
+    @choice1 = @question.choice_1.split("|")
+    @choice2 = @question.choice_2.split("|")
+    @choice3 = @question.choice_3.split("|")
+    @choice4 = @question.choice_4.split("|")
+
       counter_passed_array << @question.id
 
       @counter_to_pass = counter_passed_array.join("|")
 
     end
+
+    @name = params[:name]
 
   end
 
@@ -37,7 +44,12 @@ class QuestionsController < ApplicationController
 
     @counter_to_pass = params[:counter]
 
+    @question = Question.find(question_id)
+
     @answer = Question.answer_question(question_id,choice)
 
+    puts "\n\n\n\n\nANSWER IS:\n\n #{@answer.class}\n\n\n\n\n"
+
   end
+
 end
