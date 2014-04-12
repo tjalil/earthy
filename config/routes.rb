@@ -1,5 +1,5 @@
 Earthy::Application.routes.draw do
-
+  get "start" => "temps#start"
   # EDITED BY JOSH: I set up a quick test route to properly integrate the view I made. Feel free to edit/delete this.
   root 'temps#index'
   # END EDIT
