@@ -140,14 +140,14 @@ $(document).ready(function() {
     <h2>Identify this region.</h2>
 </div> 
 
-<p><%= @question = Question.first; @question %><p>
+
 
   <div id="question_div">
     <div id="a1">
         
         <label>
-          <span class="a_subtitle">Continental Ecuador</span>
-
+            <span class="a_title"><%=  @question.location_title%></span><br>
+            <span class="a_subtitle"><%= @question.subtitle %></span>
           <input type="radio" name="answer" id="radio_answer_1" value="1">
         </label>
       </div>
