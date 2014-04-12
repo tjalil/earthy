@@ -11,9 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20140412142905) do
+
+  create_table "questions", force: true do |t|
+    t.string   "location_title"
+    t.string   "subtitle"
+    t.text     "photo_credit"
+    t.text     "info_source"
+    t.text     "image_url"
+    t.string   "local_url"
+    t.text     "answer_description"
+    t.string   "choice_1"
+    t.string   "choice_2"
+    t.string   "choice_3"
+    t.string   "choice_4"
+    t.string   "correct_choice"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end

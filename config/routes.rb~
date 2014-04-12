@@ -1,13 +1,5 @@
 Earthy::Application.routes.draw do
 
-  get "start" => "temps#start"
-  get "question/index"
- #  EDITED BY ADRIANA: these are templates for how routes can be set up
-  #  Assumptions: the id is the question id, the round/points are hidden params
- #  get 'game/:id/ask' => "games#ask"
- #  post 'game/:id/ask' => "game#validate"
- #  get 'game/:id/answer' => "game#display_answer"
-
   # EDITED BY JOSH: I set up a quick test route to properly integrate the view I made. Feel free to edit/delete this.
   root 'temps#index'
   # END EDIT
