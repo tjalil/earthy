@@ -13,7 +13,7 @@ Earthy::Application.routes.draw do
   get 'questions/ask' => 'questions#ask'
   post 'questions' => 'questions#validate'
   get 'questions/answer' => 'questions#display'
-  root 'temps#index'  # END EDIT
+  root 'questions#index'  # END EDIT
 
 
 
