@@ -1,6 +1,5 @@
 class QuestionsController < ApplicationController
 
-  @counter = []
 
   def index
 
@@ -13,7 +12,9 @@ class QuestionsController < ApplicationController
 
     counter_passed_array = counter_passed.split("|")
 
-    if counter_passed_array.length >= 6
+
+
+    if counter_passed_array.length > 6
 
       redirect_to end_path
 
@@ -26,9 +27,10 @@ class QuestionsController < ApplicationController
     @choice3 = @question.choice_3.split("|")
     @choice4 = @question.choice_4.split("|")
 
-      counter_passed_array << @question.id
+    counter_passed_array << @question.id
 
-      @counter_to_pass = counter_passed_array.join("|")
+    @counter_to_pass = counter_passed_array.join("|")
+    @question_number = counter_passed_array.length - 1
 
     end
 
@@ -47,6 +49,8 @@ class QuestionsController < ApplicationController
     @question = Question.find(question_id)
 
     @answer = Question.answer_question(question_id,choice)
+
+    @question_number = (@counter_to_pass.split("|")).length - 1
 
     puts "\n\n\n\n\nANSWER IS:\n\n #{@answer.class}\n\n\n\n\n"
 

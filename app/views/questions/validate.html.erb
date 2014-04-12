@@ -98,7 +98,7 @@ $(document).ready(function() {
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
 
 <div id="status_bar">
-  <strong>Playing as <span class="player_name">Josh</span>.</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question 1 of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
+  <strong>Playing as <span class="player_name">Josh</span>.</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question <%=@question_number%> of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
 </div>
 
 
@@ -116,6 +116,7 @@ $(document).ready(function() {
   <p>Lake Chikita is the 3rd largest lake in Antarctica. It is frozen for 14 months out of the year. Magical trolls inhabit the summertime 
   
   <p><%= form_tag(questions_ask_path, method: :post) do %>
+      <%= hidden_field_tag(:counter,value=@counter_to_pass) %>
       <%= submit_tag "Next Question" %>
     <% end %>
 </div>
