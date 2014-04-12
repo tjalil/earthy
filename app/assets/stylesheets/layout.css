@@ -10,9 +10,24 @@ body {
 	left: 0;
 	right: 0;
 	bottom: 0;
-	
 	background-size: cover;
 }
+
+#start_img {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  filter: blur(3px);
+  -webkit-filter: blur(3px);
+  -moz-filter: blur (3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+}
+
 
 #bgCanvas {
 	position: fixed
@@ -46,9 +61,46 @@ body {
 
 #start {
   z-index: 4;
-  position: relative;
-  right: ;
+  position: absolute;
+  left: 33%;
+  width: auto;
+  top: 40%;
+  border: 5px solid #727272;
+  border-radius: 25px;
 }
+
+#name {
+  height: 75px;
+  width: 300px;
+  font-size: 3rem;
+  background-color: rgba(255,255,255,0.6);
+  border: none;
+  outline: none;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.go  {
+  height: 75px;
+  width: 80px;
+  background-color: rgba(143, 189, 6, 0.7);
+  border: none;
+  border-radius: 0 20px 20px 0;
+  vertical-align: top;
+  transition: 1s;
+  margin-left: -5px;
+}
+
+.go:hover {
+  background-color: rgba(143, 189, 6, 1);
+  transition: 1s;
+}
+
+#name:focus {
+  background-color: rgba(255,255,255,1);
+  transition: 2s;
+}
+
+
 
 #manual_trigger {
   position: absolute;
