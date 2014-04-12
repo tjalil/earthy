@@ -119,7 +119,7 @@ $(document).ready(function() {
 <canvas id="bgCanvas"></canvas>
 
 <!-- MAIN IMAGE -->
-<div id="satellite_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg); display: none;"></div>
+<div id="satellite_img" style="background-image:url(/assets/<%= @question.local_url.downcase %>.jpg); display: none;"></div>
 
 
 

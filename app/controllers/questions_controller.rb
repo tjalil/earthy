@@ -22,6 +22,8 @@ class QuestionsController < ApplicationController
 
     @answer = Question.answer_question(question_id,choice)
 
+    puts "\n\n\n\n\nANSWER IS:\n\n #{@answer.class}\n\n\n\n\n"
+
   end
 
 end
