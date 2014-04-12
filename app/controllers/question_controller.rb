@@ -10,4 +10,7 @@ class QuestionController < ApplicationController
 
   def answer
   end
+
+  def round_end
+  end
 end
