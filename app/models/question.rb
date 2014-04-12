@@ -14,7 +14,9 @@ class Question < ActiveRecord::Base
             while true do                   #keep choosing random IDs until the question exists AND it has not been given already
 
                 random_q_id = Random.new.rand(min_id..max_id)
-                break if Question.exists?(random_q_id) && !questions_administered.include?(random_q_id)
+
+                break if Question.exists?(random_q_id) && !questions_administered.include?(random_q_id.to_s)
+
 
             end
 
