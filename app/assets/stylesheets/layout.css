@@ -62,7 +62,7 @@ body {
 #start {
   z-index: 4;
   position: absolute;
-  left: 33%;
+  left: 32%;
   width: auto;
   top: 40%;
   border: 5px solid #727272;
@@ -71,12 +71,13 @@ body {
 
 #name {
   height: 75px;
-  width: 300px;
+  width: 380px;
   font-size: 3rem;
   background-color: rgba(255,255,255,0.6);
   border: none;
   outline: none;
   border-radius: 20px 0px 0px 20px;
+  padding-left: 20px;
 }
 
 .go  {
@@ -86,13 +87,26 @@ body {
   border: none;
   border-radius: 0 20px 20px 0;
   vertical-align: top;
-  transition: 1s;
+  transition: 100ms;
   margin-left: -5px;
 }
 
 .go:hover {
   background-color: rgba(143, 189, 6, 1);
-  transition: 1s;
+  transition: 100ms;
+}
+
+::-webkit-input-placeholder { /* WebKit browsers */
+    color:    #fff;
+}
+:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color:    #fff;
+}
+::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    #fff;
+}
+:-ms-input-placeholder { /* Internet Explorer 10+ */
+    color:    #fff;
 }
 
 #name:focus {
