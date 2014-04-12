@@ -10,6 +10,7 @@ class TempsController < ApplicationController
   	# puts "The session is #{@session}"
   end
 
+<<<<<<< HEAD
   def new
   	binding.pry
   	puts "User info: #{cookies[:name]}"
@@ -17,4 +18,9 @@ class TempsController < ApplicationController
   end 
 
 
+=======
+  def ask
+
+  end
+>>>>>>> 55fcee91833d0b055bf59e014e45dfafefdd5ab2
 end

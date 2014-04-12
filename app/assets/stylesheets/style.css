@@ -62,6 +62,22 @@ h2 {
 	margin: 5px 0px 90px 0px;
 }
 
+#start_label {
+	font-size: 40px;
+}
+
+
+#start_label h2 {
+	margin: 5px 0px 0px 0px;
+}
+
+.go {
+	font-family: 'Maven Pro', sans-serif;
+	font-size: 1.5rem;
+	font-weight: bold;
+	color: rgba(80,80,80,1);
+}
+
 .a_title {
 	font-size: 19px;
 	font-weight: 700;
@@ -139,9 +155,37 @@ h2 {
 
 
 
+#result_container input[type=submit] {
+	position: absolute;
+	width: 250px;
+	height: 70px;
+	left: 50%;
+	margin-left: -125px;
+	bottom: 25px;	
+	border: 0px;
+	border-radius: 10px;
+
+	color: #FFF;
+	font-family: 'Maven Pro';
+	font-weight: 700;
+	letter-spacing: -1px;
+	font-size: 24px;
+	text-shadow: 1px 1px 2px #B38F00;
+	background: #E3B600; /* Old browsers */
+	box-shadow: inset 0px -4px 30px -10px #8A6E00;
+}
+#result_container input[type=submit]:hover {
+	background: #FFD119; /* Old browsers */
+}
 
 
-
-
-
+#result_container h2 {
+	font-size: 34px;
+	margin: 25px 0px;
+}
+#result_container p {
+	width: 35%;
+	margin: 0 auto 150px auto;
+	text-align: justify;
+}
 
