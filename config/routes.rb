@@ -15,7 +15,6 @@ Earthy::Application.routes.draw do
 
   post 'questions' => 'questions#validate'
 
-
   root 'temps#index'  # END EDIT
 
 
