@@ -2,7 +2,8 @@ Earthy::Application.routes.draw do
   get "question/index"
 
   get 'question/ask' => 'temps#ask'   # Change temps to question once real views are made!
-  
+
+  post 'question/ask' => 'question#verify'
  #  EDITED BY ADRIANA: these are templates for how routes can be set up
   #  Assumptions: the id is the question id, the round/points are hidden params
  #  get 'game/:id/ask' => "games#ask"
