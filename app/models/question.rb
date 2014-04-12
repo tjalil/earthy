@@ -1,7 +1,10 @@
 class Question < ActiveRecord::Base
 
 
- def self.random_question
+
+
+ def self.random_question(questions_administered)
+
 
                                                                                        # if  @questions_administered.length < 6         
             max_id = Question.maximum(:id)
@@ -11,7 +14,7 @@ class Question < ActiveRecord::Base
             while true do                   #keep choosing random IDs until the question exists AND it has not been given already
 
                 random_q_id = Random.new.rand(min_id..max_id)
-                break if Question.exists?(random_q_id) # && !@questions_administered.include?(random_q_id)
+                break if Question.exists?(random_q_id) && !questions_administered.include?(random_q_id)
 
             end
 
