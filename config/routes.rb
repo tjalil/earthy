@@ -7,11 +7,10 @@ Earthy::Application.routes.draw do
  #  get 'game/:id/answer' => "game#display_answer"
 
   # EDITED BY JOSH: I set up a quick test route to properly integrate the view I made. Feel free to edit/delete this.
-  get "start" => "temps#start"
 
   get 'questions' => 'questions#index'
   
-  get 'questions/:id/ask' => 'questions#ask'
+  post 'questions/:id/ask' => 'questions#ask'
   
 
   post 'questions' => 'questions#validate'

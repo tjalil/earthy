@@ -3,7 +3,11 @@ class QuestionsController < ApplicationController
 
   end
   def ask
-    @question = Question.new
+    @name = params[:name]
+    @question = Question.find(1)
+    puts "\n\n\n\n\nTHIS IS IT:\n"
+    puts @question.inspect
+    puts "\n\n\n\n\n"
   end
 
   def validate
