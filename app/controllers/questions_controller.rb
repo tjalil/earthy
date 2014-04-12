@@ -1,45 +1,38 @@
+# Required to serialize cookie data
+require "yaml"
+
 class QuestionsController < ApplicationController
 
 
   def index
-
+    cookies[:score] = YAML::dump []
   end
 
   def ask
-
 
     counter_passed = params[:counter]
 
     counter_passed_array = counter_passed.split("|")
 
-
-
     if counter_passed_array.length > 6
-
       redirect_to end_path
-
     else
-
       @question = Question.random_question(counter_passed_array)
 
-    @choice1 = @question.choice_1.split("|")
-    @choice2 = @question.choice_2.split("|")
-    @choice3 = @question.choice_3.split("|")
-    @choice4 = @question.choice_4.split("|")
+      @choice1 = @question.choice_1.split("|")
+      @choice2 = @question.choice_2.split("|")
+      @choice3 = @question.choice_3.split("|")
+      @choice4 = @question.choice_4.split("|")
 
-    counter_passed_array << @question.id
+      counter_passed_array << @question.id
 
-    @counter_to_pass = counter_passed_array.join("|")
-    @question_number = counter_passed_array.length - 1
-
+      @counter_to_pass = counter_passed_array.join("|")
+      @question_number = counter_passed_array.length - 1
     end
-
     @name = params[:name]
-
   end
 
   def validate
-
     choice = params[:answer]
 
     question_id = params[:question_id]
@@ -49,10 +42,14 @@ class QuestionsController < ApplicationController
     @question = Question.find(question_id)
 
     @answer = Question.answer_question(question_id,choice)
+    @score = YAML::load cookies[:score]
+    @score << @answer
+    cookies[:score] = YAML::dump @score
+
+    # Uncomment this statement to break and check
+    # values of the cookie
+    #binding.pry
 
     @question_number = (@counter_to_pass.split("|")).length - 1
-
-
   end
-
 end
