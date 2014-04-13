@@ -4,7 +4,7 @@ require "yaml"
 class QuestionsController < ApplicationController
 
   # How many questions per round (default 6, lowered to 1 for testing)
-  GAME_LENGTH = 6
+  GAME_LENGTH = 1
 
 
   def index
