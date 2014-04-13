@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
 
 
   def index
-    cookies[:score] = serialize []
+    scores = {:current_round => [], :total_score => 0}
+    cookies[:score] = serialize scores
     cookies[:round] = serialize 1
     cookies[:name] = ""
   end
@@ -23,8 +24,6 @@ class QuestionsController < ApplicationController
     counter_passed = params[:counter]
 
     @counter_passed_array = counter_passed.split("|")
-
-    puts "\n\n\n\nCOOKIE: #{cookies[:name]}"
 
     if cookies[:name].empty?
       @name = params[:name].capitalize
@@ -43,9 +42,21 @@ class QuestionsController < ApplicationController
       # Remove the first empty array
       @counter_passed_array.shift
 
-      @score = deserialize cookies[:score]
-      
+
+      score_hash = deserialize cookies[:score]
+      @score = score_hash[:current_round]
+      @total_score = score_hash[:total_score]
+      # binding.pry
+
       @right_answers = @score.select { |s| s == true }.length
+      
+      if @right_answers == GAME_LENGTH
+        @congratulations = "High five, you did great #{@name}!!!"
+      elsif @right_answers >= (GAME_LENGTH / 2) and @right_answers < GAME_LENGTH
+        @congratulations = "Not bad #{@name}, another round to get better?"
+      else
+        @congratulations = "Let's play another round, you are getting there #{@name} :-)"
+      end
 
       render :summary
 
@@ -99,10 +110,6 @@ class QuestionsController < ApplicationController
     update_score_cookie
    
 
-    # Uncomment this statement to break and check
-    # values of the cookie
-    #binding.pry
-
     @question_number = (@counter_to_pass.split("|")).length - 1
 
     @submit_text = "View Summary" if @question_number == GAME_LENGTH
@@ -119,19 +126,24 @@ class QuestionsController < ApplicationController
   end
 
   def update_score_cookie
-    @score = deserialize(cookies[:score])
+    score_hash = deserialize(cookies[:score])
+    @score = score_hash[:current_round]
     @score << @answer
-    cookies[:score] = serialize(@score)
+    score_hash[:current_round] = @score
+    if @answer then score_hash[:total_score] += 1 end
+    # binding.pry
+
+    cookies[:score] = serialize score_hash
   end
 
   def next_round
-    cookies[:score] = serialize []
+    score_hash = deserialize(cookies[:score])
+    score_hash[:current_round] = []
+    cookies[:score] = serialize score_hash
+    # binding.pry
 
     @round = (deserialize cookies[:round]).to_i + 1
     cookies[:round] = serialize @round
-
   end
-
-
 
 end
