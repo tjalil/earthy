@@ -9,6 +9,8 @@ class QuestionsController < ApplicationController
 
   def index
 
+    @background = "/assets/"+Question.random_question([]).local_url.downcase+".jpg"
+
     scores = {:current_round => [], :total_score => 0}
     cookies[:score] = serialize scores
     cookies[:round] = serialize 1
@@ -21,6 +23,7 @@ class QuestionsController < ApplicationController
     if params[:newround]
       next_round
     end
+
 
 
     counter_passed = params[:counter]
