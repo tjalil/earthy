@@ -24,6 +24,8 @@ h2 {
 	.restart_game {
 		font-weight: 700;
 		transition: 0.4s;
+		text-decoration: none;
+		color: white;
 	}
 	.player_name {
 		transition: 0.4s;
@@ -39,7 +41,10 @@ h2 {
 	#status_bar:hover .restart_game {
 		color: #FF5C1C;
 		transition: 0.4s;
+		text-decoration: none;
 	}
+
+
 
 #manual_howto {
 	color: #FFF;

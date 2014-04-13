@@ -168,7 +168,7 @@ $(document).ready(function() {
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
 
 <div id="status_bar">
-  <strong>Playing as <span class="player_name"><%= @name %></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round <%= @rounds %>, Question <%=@question_number%> of <%=@round_qs%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
+  <strong>Playing as <span class="player_name"><%= @name %></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round <%= @rounds %>, Question <%=@question_number%> of <%=@round_qs%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game"><%= link_to "Restart game", questions_path, class: "restart_game" %></a>
 </div>
 
 <div id="manual_howto">
