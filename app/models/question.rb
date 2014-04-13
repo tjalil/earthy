@@ -6,7 +6,7 @@ class Question < ActiveRecord::Base
 
     while true do 
       random_q_id = Random.new.rand(min_id..max_id)
-      break if Question.exists?(random_q_id) && !questions_administered.include?(random_q_id.to_s)
+      break if Question.exists?(random_q_id) && !questions_administered.include?(random_q_id.to_s) && Question.find(random_q_id).interesting_1 != "" && Question.find(random_q_id).interesting_2 != ""
     end
 
     @current_question = Question.find(random_q_id)  #captured in an instance variable so that it can be used by the evaluate_question method

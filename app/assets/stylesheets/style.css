@@ -83,9 +83,12 @@ h2 {
 	font-size: 19px;
 	font-weight: 700;
 	text-shadow: 1px 1px 1px #000;
+	line-height: 1.4em;
 }
 
 .a_subtitle {
+	display: inline-block;
+	margin-top: 4px;
 	font-size: 13px;
 	text-shadow: 1px 1px 0px #000;	
 	opacity: 0.5;

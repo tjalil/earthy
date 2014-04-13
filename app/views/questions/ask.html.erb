@@ -98,11 +98,11 @@ $(document).ready(function() {
   $("#manual_trigger").mouseenter(function() {
     $("#manual_howto").stop().animate({
       left: '0px'
-    }, 300);
+    }, 600);
   }).mouseout(function() {
     $("#manual_howto").stop().animate({
       left: '-260px'
-    }, 300);
+    }, 600);
   })
 
 
@@ -118,6 +118,39 @@ $(document).ready(function() {
 
     }
   });
+
+
+  // Node Hint-Showing
+  $(".node").mouseenter(function() {
+    var indexno = $(this).attr("id").split("_").pop()
+    $("#node_hint_"+indexno).stop().animate({
+      right : "30px"
+    },200);
+  }).mouseleave(function() {
+    $(".node_hint").stop().animate({
+      right : "-160px"
+    }, 200)
+  });
+
+  // Node staggered loading
+
+  var node_count = <%= @facts_array.length %>
+  
+  // Load the first one immediately
+  if (node_count > 0) {
+    $("#node_0").fadeIn(250);
+  }
+
+  // Load subsequent ones
+  if (node_count > 1) {
+    for (i=1;i<node_count;i++) {
+      delay_amount = 250 * i;
+      $("#node_"+i).delay(delay_amount).fadeIn(250)
+    }
+  }
+
+
+
   
 });
 
@@ -148,6 +181,16 @@ $(document).ready(function() {
 <div id="question_label">
     <h2>Identify this region.</h2>
 </div> 
+
+
+<% @facts_array.each_with_index do |fact, index| %>
+<div class="node" id="node_<%= index %>" style="left: <%= @facts_coords[index][0]  %>%; top: <%= @facts_coords[index][1]  %>%"><div class="node_pulsor"></div></div>
+<div class="node_hint" id="node_hint_<%= index %>">
+  <h4>Hint</h4>
+  <%= fact %>
+</div>
+<% end %>
+
 
 <%= form_tag("/questions", :method => :post) do %>
   <%= hidden_field_tag(:counter,value=@counter_to_pass) %>
