@@ -112,10 +112,10 @@ $(document).ready(function() {
 
 
   <div id="header_correct" <%= "style=display:none" if @answer == false %>>
-    <h2 style="color: #C0F074">You're right! The answer is <%= @question.location_title %>!</h2>
+    <h2 style="color: #C0F074">Correct! The answer is <%= @question.location_title %>!</h2>
   </div>
   <div id="header_incorrect" <%= "style=display:none" if @answer == true %>>
-    <h2 style="color: #FF4545">Sorry, the answer was <%= @question.location_title %></h2>
+    <h2 style="color: #FF4545">Sorry, the answer is <%= @question.location_title %></h2>
   </div>
 
   <p><%= @question.answer_description %>
