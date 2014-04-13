@@ -154,7 +154,7 @@ $(document).ready(function() {
 </div> 
 
 <div id="start">
-    <%= form_tag("/questions/ask", method: "post", class:"name") do %>
+    <%= form_tag(questions_ask_path, method: "post", class:"name") do %>
     <%= text_field_tag(:name, nil, placeholder: "your name", class: "name") %>
     <%= hidden_field(:counter,"") %>
     <%= submit_tag("Start", :class => "go") %>
