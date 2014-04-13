@@ -103,7 +103,7 @@ $(document).ready(function() {
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
 
 <div id="status_bar">
-  <strong>Playing as <span class="player_name"><%= @name %></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round 1, Question <%=@question_number%> of 6&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
+  <strong>Playing as <span class="player_name"><%= @name %></span></strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Round <%= @rounds %>, Question <%=@question_number%> of <%=@round_qs%>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="restart_game">Restart Game</a>
 </div>
 
 
@@ -112,10 +112,10 @@ $(document).ready(function() {
 
 
   <div id="header_correct" <%= "style=display:none" if @answer == false %>>
-    <h2 style="color: #C0F074">You're right! The answer is <%= @question.location_title %>!</h2>
+    <h2 style="color: #C0F074">Correct! The answer is <%= @question.location_title %>!</h2>
   </div>
   <div id="header_incorrect" <%= "style=display:none" if @answer == true %>>
-    <h2 style="color: #FF4545">Sorry, the answer was <%= @question.location_title %></h2>
+    <h2 style="color: #FF4545">Sorry, the answer is <%= @question.location_title %></h2>
   </div>
 
   <p><%= @question.answer_description %>
@@ -123,7 +123,7 @@ $(document).ready(function() {
   <p><%= form_tag(questions_ask_path, method: :post) do %>
       <%= hidden_field_tag(:name,value=@name) %>
       <%= hidden_field_tag(:counter,value=@counter_to_pass) %>
-      <%= submit_tag "Next Question" %>
+      <%= submit_tag @submit_text %>
     <% end %>
 </div>
 

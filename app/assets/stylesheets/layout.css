@@ -352,9 +352,13 @@ input[type=radio] {
   line-height: 90px;
 }
 
-.summary_table {
-  width: 30%;
+#summary_details {
+  width: 50%;
   margin: 0 auto;
+}
+.summary_table {
+  width: 60%;
+  float: left;
 }
   .summary_table td {
     padding: 4px;
@@ -377,8 +381,18 @@ input[type=radio] {
     text-align: right;
   }
 
+  .additional_resources {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+  }
 
-
+.summary_score {
+  position: relative;
+  margin-left: 5%;
+  width: 35%;
+  float: left;
+}
 
 
 
