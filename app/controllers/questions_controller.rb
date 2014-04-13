@@ -8,7 +8,8 @@ class QuestionsController < ApplicationController
 
 
   def index
-    cookies[:score] = YAML::dump []
+    cookies[:score] = serialize []
+    cookies[:round] = serialize 1
   end
 
   def ask
@@ -25,7 +26,8 @@ class QuestionsController < ApplicationController
       # Remove the first empty array
       @counter_passed_array.shift
 
-      @score = YAML::load cookies[:score]
+      @score = deserialize cookies[:score]
+      @rounds = deserialize cookies[:round]
 
       render :summary
 
@@ -58,9 +60,8 @@ class QuestionsController < ApplicationController
     @question = Question.find(question_id)
 
     @answer = Question.answer_question(question_id,choice)
-    @score = YAML::load cookies[:score]
-    @score << @answer
-    cookies[:score] = YAML::dump @score
+    update_score_cookie
+   
 
     # Uncomment this statement to break and check
     # values of the cookie
@@ -69,9 +70,29 @@ class QuestionsController < ApplicationController
     @question_number = (@counter_to_pass.split("|")).length - 1
   end
 
-  def summary
-    @name = params[:player_name]
-
+  def serialize(item)
+    YAML::dump item
   end
+
+  def deserialize(item)
+    YAML::load item
+  end
+
+  def update_score_cookie
+    @score = deserialize(cookies[:score])
+    @score << @answer
+    cookies[:score] = serialize(@score)
+  end
+
+  def reset_game
+    cookies[:score] = serialize []
+
+    @round = (deserialize cookies[:round]).to_i + 1
+    cookies[:round] = serialize @round
+
+    redirect_to :ask
+  end
+
+
 
 end
