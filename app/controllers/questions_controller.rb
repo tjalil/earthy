@@ -8,6 +8,10 @@ class QuestionsController < ApplicationController
 
 
   def index
+    @background = "/assets/"+Question.random_question([]).local_url.downcase+".jpg"
+    puts '-----------------------------'
+    puts @background
+    puts '-----------------------------'
     cookies[:score] = YAML::dump []
   end
 
