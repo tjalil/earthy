@@ -45,9 +45,6 @@ class QuestionsController < ApplicationController
 
       @score = deserialize cookies[:score]
       
-
-      print "\n\n\nSCORE IS:\n\n#{@score}\n\n\n\n\n"
-
       @right_answers = @score.select { |s| s == true }.length
 
       render :summary
@@ -63,7 +60,19 @@ class QuestionsController < ApplicationController
       @counter_passed_array << @question.id
 
       @facts_array = []
-      @facts_array << @question.interesting_1
+      @facts_coords = []
+      @facts_array << @question.interesting_1 unless @question.interesting_1.empty?
+      @facts_array << @question.interesting_2 unless @question.interesting_2.empty?
+      @facts_array << @question.interesting_3 unless @question.interesting_3.empty?
+
+
+      # Make up coordinates for the nodes
+      @facts_array.each do |f|
+        x = rand(10..80)
+        y = rand(5..70)
+
+        @facts_coords << [x, y]
+      end
 
       @counter_to_pass = @counter_passed_array.join("|")
       @question_number = @counter_passed_array.length - 1
