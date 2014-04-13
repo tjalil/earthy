@@ -4,7 +4,7 @@ require "yaml"
 class QuestionsController < ApplicationController
 
   # How many questions per round (default 6, lowered to 1 for testing)
-  GAME_LENGTH = 3
+  GAME_LENGTH = 6
 
 
   def index
@@ -45,7 +45,7 @@ class QuestionsController < ApplicationController
       score_hash = deserialize cookies[:score]
       @score = score_hash[:current_round]
       @total_score = score_hash[:total_score]
-      binding.pry
+      # binding.pry
 
       @right_answers = @score.select { |s| s == true }.length
       
