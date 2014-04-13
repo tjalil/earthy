@@ -100,7 +100,7 @@ $(document).ready(function() {
 
 <div id="summary_container">
 
-  <h2 class="summary_header" style="color: #769C05">Wow, you did great!</h2>
+  <h2 class="summary_header" style="color: #769C05">Wow, you did great <%= @name %>!</h2>
 
   <table class="summary_table">
     
@@ -124,7 +124,11 @@ $(document).ready(function() {
   </table>
 
   
-
+  <p><%= form_tag(questions_ask_path, method: :post) do %>
+      <%= hidden_field(:counter,"") %>
+      <input type="hidden" name="name" value="<%= @name %>">
+      <%= submit_tag "Start New Game" %>
+  <% end %>
 
 
   <p><strong>Interested in satellite images?</strong> <br>
