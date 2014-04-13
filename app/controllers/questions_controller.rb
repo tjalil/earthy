@@ -13,12 +13,13 @@ class QuestionsController < ApplicationController
 
   def ask
 
+
     counter_passed = params[:counter]
 
     @counter_passed_array = counter_passed.split("|")
 
-    @name = params[:name]
-
+    @name = params[:name].capitalize
+    @round_qs = GAME_LENGTH
     # Time for results page!
     if @counter_passed_array.length > GAME_LENGTH
 
@@ -26,6 +27,10 @@ class QuestionsController < ApplicationController
       @counter_passed_array.shift
 
       @score = YAML::load cookies[:score]
+
+      print "\n\n\nSCORE IS:\n\n#{@score}\n\n\n\n\n"
+
+      @right_answers = @score.select { |s| s == true }.length
 
       render :summary
 
@@ -48,6 +53,8 @@ class QuestionsController < ApplicationController
   def validate
 
     @name = params[:player_name]
+    @round_qs = GAME_LENGTH
+
 
     choice = params[:answer]
 
@@ -67,6 +74,10 @@ class QuestionsController < ApplicationController
     #binding.pry
 
     @question_number = (@counter_to_pass.split("|")).length - 1
+
+    @submit_text = "View Summary" if @question_number == GAME_LENGTH
+    @submit_text ||= "Next Question"
+
   end
 
   def summary
