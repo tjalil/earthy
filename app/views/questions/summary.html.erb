@@ -127,7 +127,7 @@ $(document).ready(function() {
   <p><%= form_tag(questions_ask_path, method: :post) do %>
       <%= hidden_field(:counter,"") %>
       <input type="hidden" name="name" value="<%= @name %>">
-      <%= submit_tag "Start New Game" %>
+      <%= submit_tag "Start next round" %>
   <% end %>
 
 
