@@ -184,12 +184,18 @@ h2 {
 }
 
 
-#summary_container input[type=submit] {
+
+.new_game_form {
+	clear: both;
+	padding-top: 20px;
+}
+.new_game_button {
 	position: relative;
+	display: block;
 	width: 250px;
 	height: 50px;
-	margin: 30px auto 0px auto;
-	bottom: 25px;	
+	line-height: 50px;
+	margin: 0 auto;
 	border: 0px;
 	border-radius: 10px;
 
@@ -201,4 +207,40 @@ h2 {
 	text-shadow: 1px 1px 2px #769C05;
 	background: #769C05; /* Old browsers */
 	box-shadow: inset 0px -4px 30px -10px #8A6E00;
+	text-decoration: none;
+}
+.new_game_button:hover {
+	background: #94c600;
+}
+
+
+#score_fraction {
+	position: absolute;
+	width: 150px;
+	height: 150px;
+	right: 0;
+
+}
+
+.numerator {
+	position: absolute;
+	font-size: 100px;
+	left: 0px;
+	top: -15px;
+	width: 60px;
+	text-align: right;
+}
+.denominator {
+	font-size: 100px;
+	position: absolute;
+	right: 5px;
+	bottom: 0px;
+}
+.divider_symbol {
+	position: absolute;
+	font-size: 140px;
+	width: 100%;
+	text-align: center;
+	opacity: 0.5;
+	top: -15px;
 }

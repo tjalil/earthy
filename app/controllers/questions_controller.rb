@@ -8,24 +8,47 @@ class QuestionsController < ApplicationController
 
 
   def index
-    cookies[:score] = YAML::dump []
+    cookies[:score] = serialize []
+    cookies[:round] = serialize 1
+    cookies[:name] = serialize "fdnjsfs"
   end
 
   def ask
+
+    if params[:newround]
+      next_round
+    end
+
 
     counter_passed = params[:counter]
 
     @counter_passed_array = counter_passed.split("|")
 
-    @name = params[:name]
+    puts "\n\n\n\nCOOKIE: #{cookies[:name]}"
 
+    if cookies[:name].empty?
+      @name = params[:name].capitalize
+      cookies[:name] = serialize @name 
+    else
+      @name = deserialize cookies[:name]
+    end
+    
+    @rounds = deserialize cookies[:round]
+    
+
+    @round_qs = GAME_LENGTH
     # Time for results page!
     if @counter_passed_array.length > GAME_LENGTH
 
       # Remove the first empty array
       @counter_passed_array.shift
 
-      @score = YAML::load cookies[:score]
+      @score = deserialize cookies[:score]
+      
+
+      print "\n\n\nSCORE IS:\n\n#{@score}\n\n\n\n\n"
+
+      @right_answers = @score.select { |s| s == true }.length
 
       render :summary
 
@@ -48,6 +71,9 @@ class QuestionsController < ApplicationController
   def validate
 
     @name = params[:player_name]
+    @round_qs = GAME_LENGTH
+    @rounds = deserialize cookies[:round]
+
 
     choice = params[:answer]
 
@@ -58,20 +84,42 @@ class QuestionsController < ApplicationController
     @question = Question.find(question_id)
 
     @answer = Question.answer_question(question_id,choice)
-    @score = YAML::load cookies[:score]
-    @score << @answer
-    cookies[:score] = YAML::dump @score
+    update_score_cookie
+   
 
     # Uncomment this statement to break and check
     # values of the cookie
     #binding.pry
 
     @question_number = (@counter_to_pass.split("|")).length - 1
+
+    @submit_text = "View Summary" if @question_number == GAME_LENGTH
+    @submit_text ||= "Next Question"
+
   end
 
-  def summary
-    @name = params[:player_name]
+  def serialize(item)
+    YAML::dump item
+  end
+
+  def deserialize(item)
+    YAML::load item
+  end
+
+  def update_score_cookie
+    @score = deserialize(cookies[:score])
+    @score << @answer
+    cookies[:score] = serialize(@score)
+  end
+
+  def next_round
+    cookies[:score] = serialize []
+
+    @round = (deserialize cookies[:round]).to_i + 1
+    cookies[:round] = serialize @round
 
   end
+
+
 
 end

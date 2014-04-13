@@ -100,38 +100,50 @@ $(document).ready(function() {
 
 <div id="summary_container">
 
-  <h2 class="summary_header" style="color: #769C05">Wow, you did great <%= @name %>!</h2>
 
-  <table class="summary_table">
-    
-    <% @counter_passed_array.each_with_index do | gamenum, index | %>
-      <tr>
-        <% answer_object = Question.find(gamenum) %>
-        <% right_answer_title = answer_object.location_title %>
-        <% right_answer_subtitle = answer_object.subtitle %>
-        <% right_answer_link = answer_object.image_url %>
-        <% @score[index] ? linkcolor = '#8FBD06' : linkcolor = '#A81F00' %>
+  <h2 class="summary_header" style="color: #769C05">Good job <%= @name %>, you did great!</h2>
 
-        <td><span class="summary_qno"><%= index + 1 %></span></td>
-        <td style="text-align: left;">
-          <strong>
-          <%= link_to right_answer_title, right_answer_link, :target => "_blank", :style => "color: #{linkcolor}" %>
-          </strong>
-        </td>
-        <td class="summary_subtitle"><%= right_answer_subtitle %></td>
-      </tr>
-    <% end %>  
-  </table>
+  <div id="summary_details">
+    <table class="summary_table">
+      
+      <% @counter_passed_array.each_with_index do | gamenum, index | %>
+        <tr>
+          <% answer_object = Question.find(gamenum) %>
+          <% right_answer_title = answer_object.location_title %>
+          <% right_answer_subtitle = answer_object.subtitle %>
+          <% right_answer_link = answer_object.image_url %>
+          <% @score[index] ? linkcolor = '#8FBD06' : linkcolor = '#A81F00' %>
+
+          <td><span class="summary_qno"><%= index + 1 %></span></td>
+          <td style="text-align: left;">
+            <strong>
+            <%= link_to right_answer_title, right_answer_link, :target => "_blank", :style => "color: #{linkcolor}" %>
+            </strong>
+          </td>
+          <td class="summary_subtitle"><%= right_answer_subtitle %></td>
+        </tr>
+      <% end %>  
+    </table>
+    <div class="summary_score">
+      <div id="score_fraction">
+        <div class="numerator"><%= @right_answers %></div>
+        <div class="denominator"><%= @round_qs %></div>
+        <div class="divider_symbol">/</div>
+      </div>
+
+    </div>
+  </div>
 
   
-  <p><%= form_tag(questions_ask_path, method: :post) do %>
+  <p class="start_new_game"><%= form_tag(questions_ask_path, method: :post, class: "new_game_form") do %>
       <%= hidden_field(:counter,"") %>
       <input type="hidden" name="name" value="<%= @name %>">
-      <%= submit_tag "Start New Game" %>
+      <input type="hidden" name="newround" value="true">
+      <%= submit_tag "Start Next Round", :class => "new_game_button" %>
   <% end %>
 
 
-  <p><strong>Interested in satellite images?</strong> <br>
+  <p class="additional_resources"><strong>Interested in satellite images?</strong> <br>
   There are thousands of incredible earth shots at <a href="http://visibleearth.nasa.gov/" style="color: #31BFEB">NASA's Visible Earth</a>.
   </p>
 
