@@ -394,8 +394,14 @@ input[type=radio] {
   float: left;
 }
 
-.fb-share-button {
+.social-media {
   margin-top: 30px;
+  width: 40px;
+  margin-left: 47%;
+}
+
+.fb-share-button {
+  float: left;
 }
 
 
