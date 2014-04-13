@@ -208,7 +208,7 @@ input[type=submit] {
 }
 #question_div label {
 	display: block;
-	padding: 14px 0px 16px 0px;	
+	padding: 10px 0px 16px 0px;	
 }
 
 #a1 > label {
@@ -394,8 +394,95 @@ input[type=radio] {
   float: left;
 }
 
+.fb-share-button {
+  margin-top: 30px;
+}
 
 
+.node {
+  display: none;
+  position: absolute;
+  z-index:1000;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #CCC;
+  border-radius: 40px;
+  box-shadow: 1px 1px 4px rgba(0,0,0,1),
+              inset 0px 1px 1px rgba(0,0,0,0.5),
+              1px 1px 15px rgba(255,255,255,1);
+  cursor: pointer;
+  background: #ffed7c; /* Old browsers */
+  background: -moz-linear-gradient(top,  #ffed7c 0%, #f2b43a 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffed7c), color-stop(100%,#f2b43a)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #ffed7c 0%,#f2b43a 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #ffed7c 0%,#f2b43a 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #ffed7c 0%,#f2b43a 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #ffed7c 0%,#f2b43a 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffed7c', endColorstr='#f2b43a',GradientType=0 ); /* IE6-9 */
+}
+.node:hover {
+  background: #FFF1A3;
+}
 
+@-webkit-keyframes 'pulse' {
+    0% {
+        opacity:0.4;
+    }
+    50% {
+        opacity:0;
+    }
+    100% {
+        opacity:0.4;
+    }
+}
+
+.node_pulsor {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 40px;
+  background:#F00;
+  opacity: 0.25;
+  -webkit-transition: all 1s ease-in-out;
+    -moz-transition: all 1s ease-in-out;
+    -o-transition: all 1s ease-in-out;
+    -ms-transition: all 1s ease-in-out;
+    transition: all 1s ease-in-out;
+    
+    -webkit-animation-direction: normal;
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-name: pulse;
+    -webkit-animation-timing-function: ease-in-out;   
+ 
+}
+
+.node_hint {
+  position: absolute;
+  z-index: 4;
+  width: 160px;
+  padding: 15px;
+  right: -160px;
+  top: 50px;
+  border-radius: 10px;
+  border: 2px solid #727272;
+  box-shadow: 1px 1px 5px #000;
+  color: #FFF;
+  background: #000;
+  font-size: 13px;
+  word-wrap:break-word;
+}
+.node_hint h4 {
+  background: #7EDE00;
+  padding: 5px;
+  margin-top: -5px;
+  margin-left: -15px;
+  margin-right: -15px;
+  margin-bottom: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 1px 1px 1px #62AD00;
+}
 
 

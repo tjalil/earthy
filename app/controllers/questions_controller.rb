@@ -4,7 +4,7 @@ require "yaml"
 class QuestionsController < ApplicationController
 
   # How many questions per round (default 6, lowered to 1 for testing)
-  GAME_LENGTH = 3
+  GAME_LENGTH = 6
 
 
   def index
@@ -44,10 +44,11 @@ class QuestionsController < ApplicationController
       # Remove the first empty array
       @counter_passed_array.shift
 
+
       score_hash = deserialize cookies[:score]
       @score = score_hash[:current_round]
       @total_score = score_hash[:total_score]
-      binding.pry
+      # binding.pry
 
       @right_answers = @score.select { |s| s == true }.length
       
@@ -72,7 +73,19 @@ class QuestionsController < ApplicationController
       @counter_passed_array << @question.id
 
       @facts_array = []
-      @facts_array << @question.interesting_1
+      @facts_coords = []
+      @facts_array << @question.interesting_1 unless @question.interesting_1.empty?
+      @facts_array << @question.interesting_2 unless @question.interesting_2.empty?
+      @facts_array << @question.interesting_3 unless @question.interesting_3.empty?
+
+
+      # Make up coordinates for the nodes
+      @facts_array.each do |f|
+        x = rand(10..80)
+        y = rand(5..70)
+
+        @facts_coords << [x, y]
+      end
 
       @counter_to_pass = @counter_passed_array.join("|")
       @question_number = @counter_passed_array.length - 1

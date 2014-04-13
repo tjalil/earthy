@@ -91,6 +91,16 @@ $(document).ready(function() {
 <!-- Background pattern -->
 <canvas id="bgCanvas"></canvas>
 
+<!-- Facebook sharing integration -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/de_DE/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
 <!-- MAIN IMAGE -->
 <div id="start_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
 
@@ -142,6 +152,7 @@ $(document).ready(function() {
       <%= submit_tag "Start Next Round", :class => "new_game_button" %>
   <% end %>
 
+  <div class="fb-share-button" data-href="https://earthy.herokuapps.com" data-type="box_count"></div>
 
   <p class="additional_resources"><strong>Interested in satellite images?</strong> <br>
   There are thousands of incredible earth shots at <a href="http://visibleearth.nasa.gov/" style="color: #31BFEB">NASA's Visible Earth</a>.
