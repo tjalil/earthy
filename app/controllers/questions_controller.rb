@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   def index
     cookies[:score] = serialize []
     cookies[:round] = serialize 1
-    cookies[:name] = serialize "fdnjsfs"
+    cookies[:name] = ""
   end
 
   def ask
@@ -61,6 +61,9 @@ class QuestionsController < ApplicationController
       @choice4 = @question.choice_4.split("|")
 
       @counter_passed_array << @question.id
+
+      @facts_array = []
+      @facts_array << @question.interesting_1
 
       @counter_to_pass = @counter_passed_array.join("|")
       @question_number = @counter_passed_array.length - 1
