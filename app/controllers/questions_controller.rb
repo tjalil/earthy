@@ -48,6 +48,14 @@ class QuestionsController < ApplicationController
       binding.pry
 
       @right_answers = @score.select { |s| s == true }.length
+      
+      if @right_answers == GAME_LENGTH
+        @congratulations = "High five, you did great #{@name}!!!"
+      elsif @right_answers >= (GAME_LENGTH / 2) and @right_answers < GAME_LENGTH
+        @congratulations = "Not bad #{@name}, another round to get better?"
+      else
+        @congratulations = "Let's play another round, you are getting there #{@name} :-)"
+      end
 
       render :summary
 
