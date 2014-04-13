@@ -135,9 +135,10 @@ $(document).ready(function() {
   </div>
 
   
-  <p class="start_new_game"><%= form_tag(questions_ask_path, method: :post) do %>
+  <p class="start_new_game"><%= form_tag(questions_ask_path, method: :post, class: "new_game_form") do %>
       <%= hidden_field(:counter,"") %>
       <input type="hidden" name="name" value="<%= @name %>">
+      <input type="hidden" name="newround" value="true">
       <%= submit_tag "Start Next Round", :class => "new_game_button" %>
   <% end %>
 

@@ -18,6 +18,8 @@ Earthy::Application.routes.draw do
 
   get 'questions/summary' => 'questions#summary', as: :summary
 
+  post 'questions/newround' => 'questions#next_round', as: :newround
+
   root to: "questions#index"
 
 

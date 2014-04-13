@@ -4,22 +4,38 @@ require "yaml"
 class QuestionsController < ApplicationController
 
   # How many questions per round (default 6, lowered to 1 for testing)
-  GAME_LENGTH = 1
+  GAME_LENGTH = 6
 
 
   def index
     cookies[:score] = serialize []
     cookies[:round] = serialize 1
+    cookies[:name] = serialize "fdnjsfs"
   end
 
   def ask
+
+    if params[:newround]
+      next_round
+    end
 
 
     counter_passed = params[:counter]
 
     @counter_passed_array = counter_passed.split("|")
 
-    @name = params[:name].capitalize
+    puts "\n\n\n\nCOOKIE: #{cookies[:name]}"
+
+    if cookies[:name].empty?
+      @name = params[:name].capitalize
+      cookies[:name] = serialize @name 
+    else
+      @name = deserialize cookies[:name]
+    end
+    
+    @rounds = deserialize cookies[:round]
+    
+
     @round_qs = GAME_LENGTH
     # Time for results page!
     if @counter_passed_array.length > GAME_LENGTH
@@ -28,7 +44,7 @@ class QuestionsController < ApplicationController
       @counter_passed_array.shift
 
       @score = deserialize cookies[:score]
-      @rounds = deserialize cookies[:round]
+      
 
       print "\n\n\nSCORE IS:\n\n#{@score}\n\n\n\n\n"
 
@@ -56,6 +72,7 @@ class QuestionsController < ApplicationController
 
     @name = params[:player_name]
     @round_qs = GAME_LENGTH
+    @rounds = deserialize cookies[:round]
 
 
     choice = params[:answer]
@@ -95,13 +112,12 @@ class QuestionsController < ApplicationController
     cookies[:score] = serialize(@score)
   end
 
-  def reset_game
+  def next_round
     cookies[:score] = serialize []
 
     @round = (deserialize cookies[:round]).to_i + 1
     cookies[:round] = serialize @round
 
-    redirect_to :ask
   end
 
 
