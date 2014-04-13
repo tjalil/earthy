@@ -100,6 +100,7 @@ $(document).ready(function() {
 
 <div id="summary_container">
 
+
   <h2 class="summary_header" style="color: #769C05">Good job <%= @name %>, you did great!</h2>
 
   <div id="summary_details">
@@ -134,7 +135,12 @@ $(document).ready(function() {
   </div>
 
   
-  <p class="new_game_link"><%= link_to "Start new game", questions_path %></p>
+  <p><%= form_tag(questions_ask_path, method: :post) do %>
+      <%= hidden_field(:counter,"") %>
+      <input type="hidden" name="name" value="<%= @name %>">
+      <%= submit_tag "Start New Game" %>
+  <% end %>
+
 
   <p class="additional_resources"><strong>Interested in satellite images?</strong> <br>
   There are thousands of incredible earth shots at <a href="http://visibleearth.nasa.gov/" style="color: #31BFEB">NASA's Visible Earth</a>.
