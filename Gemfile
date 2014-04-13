@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+# Gives table displays in rails console
+gem 'hirb'
+
 # Include pry 
 gem 'pry-rails', :group => :development
 
