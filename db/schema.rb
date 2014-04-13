@@ -11,10 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140412142905) do
+ActiveRecord::Schema.define(version: 20140413151936) do
 
   create_table "questions", force: true do |t|
     t.string   "location_title"
+    t.text     "interesting_1"
+    t.text     "interesting_2"
+    t.text     "interesting_3"
     t.string   "subtitle"
     t.text     "photo_credit"
     t.text     "info_source"
