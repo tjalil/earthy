@@ -10,8 +10,6 @@ class Question < ActiveRecord::Base
     end
 
     @current_question = Question.find(random_q_id)  #captured in an instance variable so that it can be used by the evaluate_question method
-    @current_question
-
   end 
 
   def self.answer_question(q_id,choice)
