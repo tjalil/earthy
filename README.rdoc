@@ -2,3 +2,13 @@ EARTHY
 
 
 NASA Space Apps project, created by current Bitmaker Labs students
+
+
+==Description
+Earthy, the game, is designed to have a user sign in and guess the location of a displayed satellite image. That guess is validatied and returened as correct or incorrect with information about the image. The answers will be tallied and shown at the end of a round (6 questions) with more information. 
+
+The design team hopes to add more features and challenges as they continue study programing. When it was originally launched most of the team only had three weeks (19 days) of experience in programing. 
+
+This project was created in response to the challenge "Where on Earth" - https://2014.spaceappschallenge.org/challenge/where-earth/
+
+
