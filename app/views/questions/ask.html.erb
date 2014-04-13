@@ -82,16 +82,17 @@ $(document).ready(function() {
   var imgobj = new Image();
   imgobj.src = "/assets/<%= @question.local_url.downcase %>.jpg" ;
   $(imgobj).load(function() {
+    // Opening effects
+    $("#question_div").delay(1000).animate({
+      bottom : 0  
+    }, 800);
+    $("#question_label").delay(500).animate({
+      bottom : 0  
+    }, 800).delay(2000).fadeOut(2000);
+
     $("#satellite_img").fadeIn(1000);
   });
 
-  // Opening effects
-  $("#question_div").delay(1000).animate({
-    bottom : 0  
-  }, 800);
-  $("#question_label").delay(500).animate({
-    bottom : 0  
-  }, 800).delay(2000).fadeOut(2000);
 
   // Manual info effect
   $("#manual_trigger").mouseenter(function() {

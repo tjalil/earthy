@@ -4,7 +4,7 @@ require "yaml"
 class QuestionsController < ApplicationController
 
   # How many questions per round (default 6, lowered to 1 for testing)
-  GAME_LENGTH = 1
+  GAME_LENGTH = 6
 
 
   def index
@@ -15,26 +15,32 @@ class QuestionsController < ApplicationController
 
     counter_passed = params[:counter]
 
-    counter_passed_array = counter_passed.split("|")
+    @counter_passed_array = counter_passed.split("|")
 
     @name = params[:name]
 
-    if counter_passed_array.length > GAME_LENGTH
+    # Time for results page!
+    if @counter_passed_array.length > GAME_LENGTH
+
+      # Remove the first empty array
+      @counter_passed_array.shift
+
+      @score = YAML::load cookies[:score]
 
       render :summary
 
     else
-      @question = Question.random_question(counter_passed_array)
+      @question = Question.random_question(@counter_passed_array)
 
       @choice1 = @question.choice_1.split("|")
       @choice2 = @question.choice_2.split("|")
       @choice3 = @question.choice_3.split("|")
       @choice4 = @question.choice_4.split("|")
 
-      counter_passed_array << @question.id
+      @counter_passed_array << @question.id
 
-      @counter_to_pass = counter_passed_array.join("|")
-      @question_number = counter_passed_array.length - 1
+      @counter_to_pass = @counter_passed_array.join("|")
+      @question_number = @counter_passed_array.length - 1
     end
 
   end
@@ -65,6 +71,7 @@ class QuestionsController < ApplicationController
 
   def summary
     @name = params[:player_name]
+
   end
 
 end
