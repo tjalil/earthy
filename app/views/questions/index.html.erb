@@ -124,22 +124,31 @@ $(document).ready(function() {
 });
 
 </script>
+
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49988017-1', 'earthy.herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
+
 <!-- Background pattern -->
 <canvas id="bgCanvas"></canvas>
 
 <!-- MAIN IMAGE -->
-<div id="start_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
+<div id="start_img" style="background-image:url(<%= @background %>);"></div>
 
 <div id="logo"><%= image_tag "earthy_corner_cutout.png" %></div>
 
+
 <div id="manual_howto">
-  <h3>Users Manual</h3>
-  <p>Earthy is a game where you have to find a place according to the satelite picture.</p>
-  <ol>
-    <li>Check the satelite picture in the background</li>
-    <li>Select 1 out of the 4 answers</li>
-    <li>Klick on Lock In to see whether you are right</li>
-  </ol>
+  <h3>How To Play</h3>
+  <p>Your mission is to identify the region shown in this NASA satellite image. Select the corresponding region from the 4 choices at the bottom of the screen, and click 'Lock in' to confirm your selection. </p>
 </div>
 
 

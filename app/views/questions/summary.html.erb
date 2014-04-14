@@ -88,8 +88,32 @@ $(document).ready(function() {
 });
 
 </script>
+<!-- Google Analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-49988017-1', 'earthy.herokuapp.com');
+  ga('send', 'pageview');
+
+</script>
+
 <!-- Background pattern -->
 <canvas id="bgCanvas"></canvas>
+
+<!-- Facebook and twitter sharing integration -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 
 <!-- MAIN IMAGE -->
 <div id="start_img" style="background-image:url(/assets/chilikalake_ali_cropped.jpg);"></div>
@@ -100,38 +124,66 @@ $(document).ready(function() {
 
 <div id="summary_container">
 
+<<<<<<< HEAD
   <h2 class="summary_header" style="color: #769C05">Wow, you did great <%= @name %>!</h2>
+=======
+>>>>>>> master_fixed
 
-  <table class="summary_table">
-    
-    <% @counter_passed_array.each_with_index do | gamenum, index | %>
-      <tr>
-        <% answer_object = Question.find(gamenum) %>
-        <% right_answer_title = answer_object.location_title %>
-        <% right_answer_subtitle = answer_object.subtitle %>
-        <% right_answer_link = answer_object.image_url %>
-        <% @score[index] ? linkcolor = '#8FBD06' : linkcolor = '#A81F00' %>
+  <h2 class="summary_header" style="color: #769C05"><%= @congratulations %></h2>
 
-        <td><span class="summary_qno"><%= index + 1 %></span></td>
-        <td style="text-align: left;">
-          <strong>
-          <%= link_to right_answer_title, right_answer_link, :target => "_blank", :style => "color: #{linkcolor}" %>
-          </strong>
-        </td>
-        <td class="summary_subtitle"><%= right_answer_subtitle %></td>
-      </tr>
-    <% end %>  
-  </table>
+  <div id="summary_details">
+    <table class="summary_table">
+      
+      <% @counter_passed_array.each_with_index do | gamenum, index | %>
+        <tr>
+          <% answer_object = Question.find(gamenum) %>
+          <% right_answer_title = answer_object.location_title %>
+          <% right_answer_subtitle = answer_object.subtitle %>
+          <% right_answer_link = answer_object.image_url %>
+          <% @score[index] ? linkcolor = '#8FBD06' : linkcolor = '#A81F00' %>
+
+          <td><span class="summary_qno"><%= index + 1 %></span></td>
+          <td style="text-align: left;">
+            <strong>
+            <%= link_to right_answer_title, right_answer_link, :target => "_blank", :style => "color: #{linkcolor}" %>
+            </strong>
+          </td>
+          <td class="summary_subtitle"><%= right_answer_subtitle %></td>
+        </tr>
+      <% end %>  
+    </table>
+    <div class="summary_score">
+      <div id="score_fraction">
+        <div class="numerator"><%= @right_answers %></div>
+        <div class="denominator"><%= @round_qs %></div>
+        <div class="divider_symbol">/</div>
+      </div>
+
+    </div>
+  </div>
 
   
+<<<<<<< HEAD
   <p><%= form_tag(questions_ask_path, method: :post) do %>
       <%= hidden_field(:counter,"") %>
       <input type="hidden" name="name" value="<%= @name %>">
       <%= submit_tag "Start New Game" %>
+=======
+  <p class="start_new_game"><%= form_tag(questions_ask_path, method: :post, class: "new_game_form") do %>
+      <%= hidden_field(:counter,"") %>
+      <input type="hidden" name="name" value="<%= @name %>">
+      <input type="hidden" name="newround" value="true">
+      <%= submit_tag "Start Next Round", :class => "new_game_button" %>
+>>>>>>> master_fixed
   <% end %>
 
+<div class="social-media">
+  <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://earthy.herokuapp.com/" data-hashtags="earthy">Tweet</a>
 
-  <p><strong>Interested in satellite images?</strong> <br>
+  <div class="fb-share-button" data-href="https://earthy.herokuapps.com" data-type="button_count"></div>
+</div>
+
+  <p class="additional_resources"><strong>Interested in satellite images?</strong> <br>
   There are thousands of incredible earth shots at <a href="http://visibleearth.nasa.gov/" style="color: #31BFEB">NASA's Visible Earth</a>.
   </p>
 
