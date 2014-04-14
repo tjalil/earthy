@@ -129,12 +129,8 @@ class QuestionsController < ApplicationController
   end
 
   def make_fact_node_coords
-    @facts_array.each do |f|
-      x = rand(10..80)
-      y = rand(5..70)
-
-      @facts_coords << [x, y]
-    end
+    @facts_array.each { @facts_coords << [rand(10..80), rand(5..70)] }
+    # end
   end
 
   def determine_congrats_message
