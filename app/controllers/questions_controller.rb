@@ -11,6 +11,7 @@ class QuestionsController < ApplicationController
 
     scores = {:current_round => [], :total_score => 0}
     cookies[:score] = serialize scores
+    cookies[:questions] = serialize []
     cookies[:round] = serialize 1
     cookies[:name] = ""
   end
@@ -20,8 +21,6 @@ class QuestionsController < ApplicationController
       next_round
     end
 
-    counter_passed = params[:counter]
-    @counter_passed_array = counter_passed.split("|")
 
     if cookies[:name].empty?
       @name = params[:name].capitalize
@@ -29,15 +28,15 @@ class QuestionsController < ApplicationController
     else
       @name = deserialize cookies[:name]
     end
-    
+
+    @counter_passed_array = deserialize cookies[:questions]
     @rounds = deserialize cookies[:round]
+
 
     @round_qs = GAME_LENGTH
     # Time for results page!
-    if @counter_passed_array.length > GAME_LENGTH
+    if @counter_passed_array.length >= GAME_LENGTH
 
-      # Remove the first empty array
-      @counter_passed_array.shift
 
       score_data = deserialize cookies[:score]
       @score = score_data[:current_round]
@@ -58,7 +57,7 @@ class QuestionsController < ApplicationController
       make_fact_node_coords
 
       @counter_to_pass = @counter_passed_array.join("|")
-      @question_number = @counter_passed_array.length - 1
+      @question_number = @counter_passed_array.length
     end
   end
 
@@ -71,6 +70,10 @@ class QuestionsController < ApplicationController
     choice = params[:answer]
     question_id = params[:question_id]
 
+    @questions = deserialize cookies[:questions]
+    @questions << question_id
+    cookies[:questions] = serialize @questions
+
     @counter_to_pass = params[:counter]
 
     @question = Question.find(question_id)
@@ -78,7 +81,7 @@ class QuestionsController < ApplicationController
     @answer = Question.answer_question(question_id,choice)
     update_score_cookie
 
-    @question_number = (@counter_to_pass.split("|")).length - 1
+    @question_number = (@counter_to_pass.split("|")).length
 
     make_submit_button_label
   end
@@ -105,6 +108,7 @@ class QuestionsController < ApplicationController
     score_hash = deserialize(cookies[:score])
     score_hash[:current_round] = []
     cookies[:score] = serialize score_hash
+    cookies[:questions] = serialize []
 
     @round = (deserialize cookies[:round]).to_i + 1
     cookies[:round] = serialize @round
