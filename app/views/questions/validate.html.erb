@@ -122,7 +122,6 @@ $(document).ready(function() {
   
   <p><%= form_tag(questions_ask_path, method: :post) do %>
       <%= hidden_field_tag(:name,value=@name) %>
-      <%= hidden_field_tag(:counter,value=@counter_to_pass) %>
       <%= submit_tag @submit_text %>
     <% end %>
 </div>

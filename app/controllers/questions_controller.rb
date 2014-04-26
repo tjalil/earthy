@@ -4,16 +4,27 @@ require "yaml"
 class QuestionsController < ApplicationController
 
   # How many questions per round 
-  GAME_LENGTH = 6
+  GAME_LENGTH = 2
 
   def index
     @background = "/assets/"+Question.random_question([]).local_url.downcase+".jpg"
 
-    scores = {:current_round => [], :total_score => 0}
-    cookies[:score] = serialize scores
-    cookies[:questions] = serialize []
-    cookies[:round] = serialize 1
-    cookies[:name] = ""
+    # Our data:
+    # Current round     int
+    # Round score       int
+    # questions         array of hashes > { id: boolean }
+    # name              string
+
+    gameObj = {
+      name: "",
+      round: 1,
+      score: 0,
+      totalScore: 0,
+      questions: []
+    }
+
+    cookies[:game] = serialize gameObj
+
   end
 
   def ask
@@ -21,28 +32,29 @@ class QuestionsController < ApplicationController
       next_round
     end
 
+    gameObj = deserialize cookies[:game]
 
-    if cookies[:name].empty?
-      @name = params[:name].capitalize
-      cookies[:name] = serialize @name 
-    else
-      @name = deserialize cookies[:name]
+
+    if gameObj[:name].empty?
+      gameObj[:name] = params[:name].capitalize
     end
 
-    @counter_passed_array = deserialize cookies[:questions]
-    @rounds = deserialize cookies[:round]
+    @name = gameObj[:name]
+
+
+    @counter_passed_array = gameObj[:questions]
+    @rounds = gameObj[:round]
 
 
     @round_qs = GAME_LENGTH
+
     # Time for results page!
     if @counter_passed_array.length >= GAME_LENGTH
 
+      @questions_array = gameObj[:questions]
+      @score = gameObj[:score]
 
-      score_data = deserialize cookies[:score]
-      @score = score_data[:current_round]
-      @total_score = score_data[:total_score]
-
-      @right_answers = @score.select { |s| s == true }.length
+      @right_answers = @score
       
       determine_congrats_message
       render :summary
@@ -50,40 +62,41 @@ class QuestionsController < ApplicationController
       get_new_question
       get_question_choices
      
-      @counter_passed_array << @question.id
       @facts_coords = []
       
       get_interesting_facts
       make_fact_node_coords
 
-      @counter_to_pass = @counter_passed_array.join("|")
-      @question_number = @counter_passed_array.length
+      cookies[:game] = serialize gameObj
+
+      @question_number = @counter_passed_array.length + 1
     end
   end
 
   def validate
-    @name = params[:player_name]
+    gameObj = deserialize cookies[:game]
+
     @round_qs = GAME_LENGTH
-    @rounds = deserialize cookies[:round]
+    @rounds = gameObj[:round]
 
 
     choice = params[:answer]
     question_id = params[:question_id]
 
-    @questions = deserialize cookies[:questions]
-    @questions << question_id
-    cookies[:questions] = serialize @questions
-
-    @counter_to_pass = params[:counter]
-
+    @answer = Question.answer_question(question_id,choice)
     @question = Question.find(question_id)
 
-    @answer = Question.answer_question(question_id,choice)
-    update_score_cookie
-
-    @question_number = (@counter_to_pass.split("|")).length
 
     make_submit_button_label
+
+    gameObj[:questions] << { question_id => @answer }
+    gameObj[:score] += 1 if @answer
+
+    cookies[:game] = serialize gameObj
+
+    @question_number = gameObj[:questions].length
+
+
   end
 
   def serialize(item)
@@ -94,24 +107,15 @@ class QuestionsController < ApplicationController
     YAML::load item
   end
 
-  def update_score_cookie
-    score_hash = deserialize(cookies[:score])
-    @score = score_hash[:current_round]
-    @score << @answer
-    score_hash[:current_round] = @score
-    if @answer then score_hash[:total_score] += 1 end
-
-    cookies[:score] = serialize score_hash
-  end
-
   def next_round
-    score_hash = deserialize(cookies[:score])
-    score_hash[:current_round] = []
-    cookies[:score] = serialize score_hash
-    cookies[:questions] = serialize []
+    gameObj = deserialize cookies[:game]
+    
+    gameObj[:round] += 1
+    gameObj[:totalScore] += gameObj[:score]
+    gameObj[:score] = 0
+    gameObj[:questions] = []
 
-    @round = (deserialize cookies[:round]).to_i + 1
-    cookies[:round] = serialize @round
+    cookies[:game] = serialize gameObj
   end
 
   def get_new_question

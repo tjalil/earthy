@@ -118,13 +118,13 @@ $(document).ready(function() {
   <div id="summary_details">
     <table class="summary_table">
       
-      <% @counter_passed_array.each_with_index do | gamenum, index | %>
+      <% @questions_array.each_with_index do | question_hash, index | %>
         <tr>
-          <% answer_object = Question.find(gamenum) %>
+          <% answer_object = Question.find(question_hash.keys.first) %>
           <% right_answer_title = answer_object.location_title %>
           <% right_answer_subtitle = answer_object.subtitle %>
           <% right_answer_link = answer_object.image_url %>
-          <% @score[index] ? linkcolor = '#8FBD06' : linkcolor = '#A81F00' %>
+          <% question_hash.values.first ? linkcolor = '#8FBD06' : linkcolor = '#A81F00' %>
 
           <td><span class="summary_qno"><%= index + 1 %></span></td>
           <td style="text-align: left;">
@@ -148,7 +148,6 @@ $(document).ready(function() {
 
   
   <p class="start_new_game"><%= form_tag(questions_ask_path, method: :post, class: "new_game_form") do %>
-      <%= hidden_field(:counter,"") %>
       <input type="hidden" name="name" value="<%= @name %>">
       <input type="hidden" name="newround" value="true">
       <%= submit_tag "Start Next Round", :class => "new_game_button" %>
